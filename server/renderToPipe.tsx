@@ -3,14 +3,17 @@ import App from '../client/_app'
 import Document from '../client/_document'
 import { ServerResponse, IncomingMessage } from 'http'
 import { renderToPipeableStream } from 'react-dom/server'
+import { GetServerSidePropsType } from '../client/interface'
 
 export async function renderToPipe(
   req: IncomingMessage,
   res: ServerResponse,
-  pathname: string
+  pathname: string,
+  getServerSideProps?: GetServerSidePropsType
 ) {
   let didError = false
-  const __DATA__ = { pathname }
+  const pageProps = await getServerSideProps?.({ req, res })
+  const __DATA__ = { pathname, pageProps }
   const stream = renderToPipeableStream(
     <Document>
       <App __DATA__={__DATA__} />

@@ -1,9 +1,4 @@
-import { FC, PropsWithChildren } from 'react'
 import type { IncomingMessage, ServerResponse } from 'http'
-
-export type SsrFC<T = {}> = FC<PropsWithChildren<T>> & {
-  getInitialProps?: (ctx: CtxProps) => Promise<T>
-}
 
 export interface CtxProps {
   /**
@@ -15,4 +10,19 @@ export interface CtxProps {
    * res
    */
   res?: ServerResponse
+}
+
+/**
+ * 服务端数据请求
+ */
+export type GetServerSidePropsType<T = {}> = (ctx: CtxProps) => Promise<T>
+
+/**
+ * 根组件Props
+ */
+export interface AppProps {
+  __DATA__: {
+    pathname: string
+    pageProps?: any
+  }
 }

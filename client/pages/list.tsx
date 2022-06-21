@@ -1,18 +1,21 @@
-import React from 'react'
-import { SsrFC } from '../interface'
+import React, { FC } from 'react'
+import { getList } from '../../mock/getList'
+import { GetServerSidePropsType } from '../interface'
 
-const LIST = [
-  { id: 1, title: '标题1', desc: '描述1' },
-  { id: 2, title: '标题2', desc: '描述2' },
-  { id: 3, title: '标题3', desc: '描述3' },
-  { id: 4, title: '标题4', desc: '描述4' },
-]
+interface ListProps {
+  list: {
+    id: number
+    title: string
+    desc: string
+  }[]
+}
 
-const List: SsrFC = () => {
+const List: FC<ListProps> = (props) => {
+  const { list } = props
   return (
     <div>
       <ul>
-        {LIST.map((item) => (
+        {list.map((item) => (
           <li key={item.id}>
             {item.title}: {item.desc}
           </li>
@@ -20,6 +23,13 @@ const List: SsrFC = () => {
       </ul>
     </div>
   )
+}
+
+export const getServerSideProps: GetServerSidePropsType<ListProps> = async () => {
+  const list = await getList()
+  return {
+    list,
+  }
 }
 
 export default List

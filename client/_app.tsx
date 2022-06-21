@@ -1,17 +1,10 @@
-import React from 'react'
-import { SsrFC } from './interface'
+import React, { FC } from 'react'
 import Router from '../router/Route'
+import type { AppProps } from './interface'
 
-interface AppProps {
-  __DATA__: {
-    pathname: string
-    pageProps?: any
-  }
-}
-
-const App: SsrFC<AppProps> = (props) => {
+const App: FC<AppProps> = (props) => {
   const { __DATA__ } = props
-  return <Router pathname={__DATA__.pathname} />
+  return <Router {...__DATA__} />
 }
 
 export default App

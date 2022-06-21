@@ -1,11 +1,11 @@
-import React from 'react'
-import { SsrFC } from '../interface'
-import { routerPush } from '../../router/Route'
+import React, { FC } from 'react'
+import { useRouter } from '../../router/Route'
 
-const Home: SsrFC = () => {
+const Home: FC = () => {
+  const router = useRouter()
   return (
     <div>
-      <button onClick={() => routerPush('/list')}>跳转list</button>
+      <button onClick={() => router.push?.('/list')}>跳转list</button>
     </div>
   )
 }

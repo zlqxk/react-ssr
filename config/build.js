@@ -1,4 +1,5 @@
 const path = require('path')
+const shelljs = require('shelljs')
 
 /**
  * 客户端
@@ -16,6 +17,7 @@ require('esbuild')
       },
     },
   })
+  .then(() => console.log('client start'))
   .catch(() => process.exit(1))
 
 /**
@@ -34,5 +36,10 @@ require('esbuild')
         else console.log('server build end')
       },
     },
+  })
+  .then(() => {
+    console.log('server start')
+    // server端代码编译完成后启动node服务
+    shelljs.exec(`nodemon -w ./dist/server ./dist/server/index.js`)
   })
   .catch(() => process.exit(1))

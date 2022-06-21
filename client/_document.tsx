@@ -1,7 +1,6 @@
-import React from 'react'
-import { SsrFC } from './interface'
+import React, { FC, PropsWithChildren } from 'react'
 
-const Document: SsrFC = (props) => {
+const Document: FC<PropsWithChildren> = (props) => {
   const { children } = props
 
   return (
