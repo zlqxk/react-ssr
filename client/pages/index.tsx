@@ -8,6 +8,10 @@ const Home: FC = () => {
   return (
     <div className="box">
       <div className="card">
+        <p>绑定事件</p>
+        <button onClick={() => console.log('click')}>点击</button>
+      </div>
+      <div className="card">
         <p>前端路由跳转</p>
         <button onClick={() => router.push?.('/list')}>跳转</button>
       </div>
