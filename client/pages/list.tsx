@@ -3,24 +3,16 @@ import { getList } from '../../mock/getList'
 import { GetServerSidePropsType } from '../interface'
 
 interface ListProps {
-  list: {
-    id: number
-    title: string
-    desc: string
-  }[]
+  list: string[]
 }
 
 const List: FC<ListProps> = (props) => {
   const { list } = props
   return (
     <div>
-      <ul>
-        {list.map((item) => (
-          <li key={item.id}>
-            {item.title}: {item.desc}
-          </li>
-        ))}
-      </ul>
+      {list.map((item, index) => (
+        <p key={index}>{item}</p>
+      ))}
     </div>
   )
 }
